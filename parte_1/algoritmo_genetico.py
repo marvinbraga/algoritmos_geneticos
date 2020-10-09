@@ -1,6 +1,6 @@
 from random import random
 
-from individuo import Individuo
+from parte_1.individuo import Individuo
 
 
 class AlgoritmoGenetico:

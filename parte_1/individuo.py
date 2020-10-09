@@ -75,9 +75,7 @@ class Individuo:
         geracao = self.geracao + 1
         filhos = [
             Individuo(self.espacos, self.valores, self.limite_espacos, geracao),
-                      # nome=f'{outro_individuo.nome}{self.nome}.{geracao}'),
             Individuo(self.espacos, self.valores, self.limite_espacos, geracao),
-                      # nome=f'{self.nome}{outro_individuo.nome}.{geracao}'),
         ]
         filhos[0].cromossomo = filho1
         filhos[1].cromossomo = filho2

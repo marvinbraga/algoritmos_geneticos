@@ -1,6 +1,5 @@
-from algoritmo_genetico import AlgoritmoGenetico
-from individuo import Individuo
-from produto import Produto
+from parte_1.algoritmo_genetico import AlgoritmoGenetico
+from parte_1.produto import Produto
 
 
 if __name__ == '__main__':
