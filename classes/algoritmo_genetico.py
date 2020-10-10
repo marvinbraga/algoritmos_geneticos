@@ -1,6 +1,7 @@
 from random import random
+import matplotlib.pyplot as plt
 
-from parte_1.individuo import Individuo
+from classes.individuo import Individuo
 
 
 class AlgoritmoGenetico:
@@ -10,6 +11,7 @@ class AlgoritmoGenetico:
         self.taxa_mutacao = taxa_mutacao
         self.tamanho_populacao = tamanho_populacao
         self.populacao = []
+        self.lista_solucoes = []
         self.geracao = 0
         self.melhor_solucao = None
 
@@ -88,6 +90,9 @@ class AlgoritmoGenetico:
         :return: self
         """
         melhor = self.populacao[0]
+        # Guarda as melhores soluções para apresentação em gráfico.
+        self.lista_solucoes.append(melhor.nota_avaliacao)
+        # Imprime informações sobre a melhor solução.
         print(f'Geração: {melhor.geracao}, {melhor}, Nota: {melhor.nota_avaliacao}')
         return self
 
@@ -100,6 +105,12 @@ class AlgoritmoGenetico:
         print(f'Melhor solução para o problema: {self.melhor_solucao}')
         print(f'Nota: {self.melhor_solucao.nota_avaliacao}')
         print(f'Soma das avaliações: {self.soma_avaliacoes()}')
+        return self
+
+    def apresenta_grafico_melhores(self):
+        plt.plot(self.lista_solucoes)
+        plt.title('Acompanhamento dos Valores')
+        plt.show()
         return self
 
     def resolver(self, espacos, valores, limite_espacos):

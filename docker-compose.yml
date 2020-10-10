@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+  db:
+    container_name: alg_genetico_db
+    image: mariadb:10.3
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_HOST=127.0.0.1
+      - MYSQL_PORT=3306
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=produtos-db
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=Raposa789
+      - MYSQL_ROOT_PASSWORD=Raposa789
+      - TZ=UTC
+    volumes:
+      - ./my.cnf:/root/.my.cnf:ro
+      - ./mariadb10.3/conf.d:/etc/mysql/conf.d:ro
+      - ./mariadb10.3/logs:/var/log/mysql:rw
+      - ./scripts:/scripts
+      - ./scripts/init_mariadb.sql:/docker-entrypoint-initdb.d/init_mariadb.sql
+      - ./common:/app:ro
+      - ./auto-generate:/auto-generate:rw
