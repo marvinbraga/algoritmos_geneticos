@@ -58,10 +58,10 @@ class Connect:
                 f"('{prd.nome}', {prd.espaco}, {prd.valor}, 1);"
             )
         finally:
+            if commit:
+                self._conn.commit()
             if cursor is None:
                 cr.close()
-        if commit:
-            self._conn.commit()
         return self
 
     def _criar_produtos(self):

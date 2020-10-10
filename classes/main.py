@@ -16,9 +16,7 @@ if __name__ == '__main__':
     limite = 3.0
     tam_populacao = 20
     numero_geracoes = 2000
-
     # Pais mais capazes geram mais filhos e pais menos capazes também geram, porém, em menor quantidade.
-    nova_populacao = []
     taxa_mutacao = 0.01
 
     ag = AlgoritmoGenetico(tam_populacao, taxa_mutacao, numero_geracoes)
