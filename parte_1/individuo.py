@@ -58,30 +58,47 @@ class Individuo:
     def avaliacao(self):
         """
         Maximizar a configuração que devolver o maior valor total.
-        :return:
+        :return: self
         """
         nota = self.valor_total
         self.espaco_usado = self.volume_total
         if self.espaco_usado > self.limite_espacos:
+            # Minimiza soluções ruins.
             nota = 1
+        # Recupera a nota para a avaliação.
         self.nota_avaliacao = nota
         return self
 
     def crossover(self, outro_individuo):
+        """
+        Aplica uma troca de valores no ponte de conte.
+        :param outro_individuo: Indivíduo que participará do crossover.
+        :return: Lista com 2 novos indivíduos filhos.
+        """
         corte = round(random() * len(self.cromossomo))
+        # Cria os novos cromossomos.
         filho1 = outro_individuo.cromossomo[0:corte] + self.cromossomo[corte::]
         filho2 = self.cromossomo[0:corte] + outro_individuo.cromossomo[corte::]
 
+        # Prepara a nova geração.
         geracao = self.geracao + 1
+        # Cria os novos filhos.
         filhos = [
             Individuo(self.espacos, self.valores, self.limite_espacos, geracao),
             Individuo(self.espacos, self.valores, self.limite_espacos, geracao),
         ]
+        # Popula os cromossomos gerados nos filhos.
         filhos[0].cromossomo = filho1
         filhos[1].cromossomo = filho2
+
         return filhos
 
     def mutacao(self, taxa_mutacao):
+        """
+        Percorre todos os genes a altera o valor do cromossomo de acordo com a taxa de mutação.
+        :param taxa_mutacao: valor informado para para aplicar a mutação.
+        :return: self.
+        """
         for i in range(len(self.cromossomo)):
             if random() < taxa_mutacao:
                 if self.cromossomo[i] == '1':
